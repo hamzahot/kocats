@@ -1,0 +1,7 @@
+
+spring :
+  application:
+    name: KoCats Project
+
+  profiles:
+    active: dev

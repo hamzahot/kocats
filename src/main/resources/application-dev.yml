@@ -1,0 +1,16 @@
+server:
+  port: 8082
+
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  datasource:
+    name: MySQL Connection
+    url: jdbc:mysql://localhost:3306/kocats?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=CET&allowPublicKeyRetrieval=true
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+      show-sql: true
