@@ -3,8 +3,10 @@ package com.academy.kocats.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 @Table(name = "cat_photo")
 public class CatPhoto {
 
