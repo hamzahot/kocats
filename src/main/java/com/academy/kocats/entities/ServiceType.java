@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "service_type")
 public class ServiceType {
 

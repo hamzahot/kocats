@@ -1,18 +1,22 @@
 package com.academy.kocats.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "product")
-public class Product extends ServiceType {
+public class Product {
 
+    @Id
+    private int id;
 
     private String name;
 
     private String description;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private ServiceType serviceType;
 
 }
 //id
