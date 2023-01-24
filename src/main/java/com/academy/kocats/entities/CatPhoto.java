@@ -12,13 +12,15 @@ public class CatPhoto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "photo_id")
     private Integer photoId;
 
+    @Column(name = "file_path")
     private String filePath;
 
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "catId")
+    @JoinColumn(name = "cat_id")
     private Cat cat;
 
     //catId
