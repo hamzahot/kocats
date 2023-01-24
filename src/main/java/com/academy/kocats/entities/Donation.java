@@ -11,11 +11,11 @@ import lombok.Setter;
 public class Donation {
 
     @Id
-    private int id;
+    private Integer id;
 
     private String letter;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @MapsId
     private ServiceType serviceType;
 

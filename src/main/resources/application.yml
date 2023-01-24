@@ -2,6 +2,7 @@
 spring :
   application:
     name: KoCats Project
-
+  jpa:
+    show-sql: true
   profiles:
     active: dev

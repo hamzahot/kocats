@@ -6,30 +6,35 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "purchase")
 public class Purchase {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchase_id")
     private Integer purchaseId;
 
     private Boolean successful = false;
 
     private Double total_price;
 
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "purchase")
     private List<PurchaseItem> purchaseItems = new ArrayList<>();
 

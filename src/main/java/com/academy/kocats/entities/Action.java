@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Action {
 
     @Id
-    private int id;
+    private Integer id;
 
     private String name;
 
