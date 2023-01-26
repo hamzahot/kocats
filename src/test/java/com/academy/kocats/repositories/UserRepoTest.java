@@ -62,14 +62,16 @@ public class UserRepoTest {
 
     @Test
     void shouldRemoveRole(){
-        User user = userRepository.findByUserId(7);
-
+        //User user = userRepository.findByUserIdWithPurchase(9);
+        //User user = userRepository.findByUserId(9);
 //        User user = userRepository.findWithRolesByUsername("marko06");
 //        Role role = roleRepository.findByName("Manager");
 //
         //user.removeRoleById(2);
 
-        userRepository.delete(user);
+        //user.removePurchases();
+
+        userRepository.deleteById(4);
     }
 
 

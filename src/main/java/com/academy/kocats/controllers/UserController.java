@@ -25,11 +25,25 @@ public class UserController {
         return new ResponseEntity<>(userGetDTOS, HttpStatus.OK);
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<UserGetDTO> getById(@PathVariable("id") Integer id){
+        UserGetDTO userGetDTO = userService.getById(id);
+        return new ResponseEntity<>(userGetDTO, HttpStatus.OK);
+    }
 
-    @PostMapping()
+
+    @PostMapping
     public ResponseEntity<Void> insert(@RequestBody UserCreateDTO userCreateDTO){
         userService.insert(userCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id){
+        userService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }

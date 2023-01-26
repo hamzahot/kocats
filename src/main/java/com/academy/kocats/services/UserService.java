@@ -38,4 +38,16 @@ public class UserService {
         return userGetDTOS;
 
     }
+
+    public void deleteById(Integer id) {
+        userRepository.deleteById(id);
+    }
+
+
+    public UserGetDTO getById(Integer id) {
+
+        User user = userRepository.findByUserId(id);
+        return userMapper.toGetDTO(user);
+
+    }
 }
