@@ -93,4 +93,7 @@ public class User {
         }
     }
 
+    public void removePurchases() {
+        this.setPurchases(null);
+    }
 }

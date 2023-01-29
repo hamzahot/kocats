@@ -46,7 +46,7 @@ public class CatRepositoryTest {
 
     @Test
     void shouldDeleteCat(){
-        Cat cat = catRepository.findByCatId(3);
+        Cat cat = catRepository.findByCatId(7);
 
         catRepository.delete(cat);
 

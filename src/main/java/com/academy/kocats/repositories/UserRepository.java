@@ -27,6 +27,13 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findWithRolesById(@Param(value = "id") Integer id);
 
 
+    @Query(value = "select user " +
+            "from User user " +
+            "join fetch user.purchases " +
+            "where user.id = :id")
+    User findByUserIdWithPurchase(@Param("id") int id);
+
+
 //    @Modifying
 //    @Query(value = "delete from user_role where user_id = :id")
 //    void deleteUserwithId(@Param(value = "id") Integer id);

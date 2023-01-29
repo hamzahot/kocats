@@ -36,7 +36,7 @@ public class Cat {
 
 
    // @JsonManagedReference
-    @OneToMany(mappedBy = "cat")
+    @OneToMany(mappedBy = "cat", cascade = CascadeType.ALL)
     private List<CatPhoto> catPhotos = new ArrayList<>();
 
 
