@@ -31,11 +31,26 @@ public class UserController {
         return new ResponseEntity<>(userGetDTO, HttpStatus.OK);
     }
 
+//    @GetMapping(value = "wp/{id}")
+//    public ResponseEntity<UserGetDTO> getByIdWithPurchase(@PathVariable("id") Integer id){
+//        UserGetDTO userGetDTO = userService.getByIdWp(id);
+//        return new ResponseEntity<>(userGetDTO, HttpStatus.OK);
+//    }
+
 
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody UserCreateDTO userCreateDTO){
         userService.insert(userCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "{id}")
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id , @RequestBody UserCreateDTO userCreateDTO){
+        if(userCreateDTO == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        userService.update(id, userCreateDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

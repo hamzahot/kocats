@@ -49,10 +49,11 @@ public class UserRepoTest {
 
     @Test
     void shouldUpdateUser(){
-        User user = userRepository.findByUserId(2);
-        user.setFirstName("Amar");
+        User user = userRepository.findByUId(1);
+        log.info(user.getUserId().toString());
+        user.setFirstName("Hamzaa");
         user.setLastName("Hot");
-        user.setUsername("amarhot");
+        user.setUsername("amarhot22");
         user.setPassword("amkalj2");
 
         userRepository.save(user);

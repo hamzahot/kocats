@@ -20,6 +20,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findByUserId(Integer id);
 
+    @Query(value = "select user " +
+            "from User user " +
+            "join fetch user.shoppingCart " +
+            "where user.id = :id")
+    User findByUId(@Param("id") Integer id);
 
     @Query(value = "select user from User as user " +
             "join fetch user.roles " +
@@ -34,9 +39,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findByUserIdWithPurchase(@Param("id") int id);
 
 
-//    @Modifying
-//    @Query(value = "delete from user_role where user_id = :id")
-//    void deleteUserwithId(@Param(value = "id") Integer id);
+//    @Query(value = "select user " +
+//            "from User user " +
+//            "join fetch user.purchases " +
+//            "where user.id = :id")
+//    User findByUserIdWp(@Param("id") Integer id);
+
+
+
 
 
 
