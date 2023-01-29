@@ -22,6 +22,16 @@ public class CatController {
     }
 
 
+    @PutMapping(value = "{id}")
+    public ResponseEntity<Void> update(@PathVariable("id") Integer id, @RequestBody CatCreateDTO catCreateDTO){
+        if(catCreateDTO == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        catService.update(id, catCreateDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id){
         catService.deleteById(id);
