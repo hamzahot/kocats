@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Setter
 @Getter
 @Table(name = "product")
 public class Product {
@@ -17,8 +18,13 @@ public class Product {
 
     private String description;
 
+
+
+
+
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
+    @JoinColumn(name = "id")
     private ServiceType serviceType;
 
 }
