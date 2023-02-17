@@ -36,7 +36,7 @@ public class ShoppingCart {
 
 
     //@JsonManagedReference
-    @OneToMany(mappedBy = "shoppingCart")
+    @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER)
     private List<CartItem> cartItems = new ArrayList<>();
 
 }

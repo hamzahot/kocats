@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "donation")
 public class Donation {
 
@@ -17,6 +18,7 @@ public class Donation {
 
     @OneToOne(fetch = FetchType.EAGER)
     @MapsId
+    @JoinColumn(name = "id")
     private ServiceType serviceType;
 
 

@@ -35,6 +35,10 @@ public class Cat {
     private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "cat")
+    private List<CartItem> cartItems = new ArrayList<>();
+
+
    // @JsonManagedReference
     @OneToMany(mappedBy = "cat", cascade = CascadeType.ALL)
     private List<CatPhoto> catPhotos = new ArrayList<>();

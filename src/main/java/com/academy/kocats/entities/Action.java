@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "action")
 public class Action {
 
@@ -18,6 +20,7 @@ public class Action {
 
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
+    @JoinColumn(name = "id")
     private ServiceType serviceType;
 
 

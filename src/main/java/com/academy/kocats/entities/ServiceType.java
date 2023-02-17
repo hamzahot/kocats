@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.util.Date;
 
 @Entity
+@Setter
 @Getter
 @DynamicInsert
 @DynamicUpdate
@@ -25,5 +26,7 @@ public class ServiceType {
     private Date date;
 
     private Double price;
+
+    private String category;
 
 }
