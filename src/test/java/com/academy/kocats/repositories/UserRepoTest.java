@@ -77,4 +77,25 @@ public class UserRepoTest {
 
 
 
+    @Test
+    void shouldCheckUsername(){
+        boolean b = userRepository.existsByUsername("amarhot212342");
+        log.info(Boolean.toString(b));
+    }
+
+    @Test
+    void shouldCheckUsernameAndPassword(){
+        boolean b = userRepository.existsByUsernameAndPassword("amarhot22", "amka23lj2");
+        log.info(Boolean.toString(b));
+    }
+
+
+    @Test
+    void shouldCheckEmail(){
+        boolean b = userRepository.existsByEmail("hamzahotdfg74i");
+        log.info(Boolean.toString(b));
+    }
+
+
+
 }

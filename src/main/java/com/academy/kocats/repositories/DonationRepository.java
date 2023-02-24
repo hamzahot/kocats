@@ -4,6 +4,7 @@ package com.academy.kocats.repositories;
 import com.academy.kocats.entities.Donation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +23,6 @@ public interface DonationRepository extends JpaRepository<Donation, Integer> {
             "from Donation donation " +
             "join fetch donation.serviceType " +
             "where donation.id = :id")
-    Donation getDonationById(Integer id);
+    Donation getDonationById(@Param("id") Integer id);
 
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class CatGetDTO {
 
-    private Integer id;
-    private Integer name;
+    private Integer catId;
+    private String name;
 
 }

@@ -14,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "purchase")
@@ -35,7 +36,8 @@ public class Purchase {
     private User user;
 
     //@JsonManagedReference
-    @OneToMany(mappedBy = "purchase")
+    @OneToMany(mappedBy = "purchase",
+            cascade = CascadeType.ALL)
     private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
 }

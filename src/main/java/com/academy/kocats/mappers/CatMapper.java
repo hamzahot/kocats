@@ -22,7 +22,6 @@ public interface CatMapper {
 //////////////obavezno da se ispravii
 
 
-    @Mapping(source = "catId" , target = "id")
     CatGetDTO toGetDTO(Cat cat);
 
 }

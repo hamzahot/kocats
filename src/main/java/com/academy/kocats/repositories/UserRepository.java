@@ -46,10 +46,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //    User findByUserIdWp(@Param("id") Integer id);
 
 
+    boolean existsByUsernameAndPassword(String username , String password);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
 
 
-
-
-
-
+    @Query(value = "select user from User user " +
+            "join fetch user.roles " +
+            "where user.username = :username")
+    User findWithRolesByUsername(@Param("username") String username);
 }

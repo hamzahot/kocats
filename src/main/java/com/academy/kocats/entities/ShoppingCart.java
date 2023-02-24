@@ -39,4 +39,11 @@ public class ShoppingCart {
     @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER)
     private List<CartItem> cartItems = new ArrayList<>();
 
+
+    public void removeItemById(Integer id){
+        CartItem item = getCartItems().get(id);
+        cartItems.remove(item);
+    }
+
+
 }

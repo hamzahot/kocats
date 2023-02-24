@@ -1,6 +1,8 @@
 package com.academy.kocats.dto.user.command;
 
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.Date;
@@ -9,13 +11,21 @@ import java.util.Date;
 public class UserCreateDTO {
 
 
-
     private String firstName;
+
+
     private String lastName;
+
     private String email;
+
+
     private String username;
+
+
     private String password;
+
     private String phoneNumber;
+
     private Date birthDate;
 
 
