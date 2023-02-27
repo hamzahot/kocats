@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Getter
+@Setter
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "purchase_item")

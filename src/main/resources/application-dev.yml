@@ -14,3 +14,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jpa:
       show-sql: true
+
+
+custom-auth:
+  key: aabbcc4567

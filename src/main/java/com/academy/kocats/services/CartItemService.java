@@ -2,16 +2,20 @@ package com.academy.kocats.services;
 
 
 import com.academy.kocats.dto.cartItem.command.CartItemCommandDTO;
+import com.academy.kocats.dto.cartItem.query.CartItemQueryDTO;
 import com.academy.kocats.entities.CartItem;
 import com.academy.kocats.entities.Cat;
 import com.academy.kocats.entities.ServiceType;
 import com.academy.kocats.entities.ShoppingCart;
+import com.academy.kocats.mappers.CartItemMapper;
 import com.academy.kocats.repositories.CartItemRepository;
 import com.academy.kocats.repositories.CatRepository;
 import com.academy.kocats.repositories.ServiceTypeRepository;
 import com.academy.kocats.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CartItemService {
@@ -29,6 +33,9 @@ public class CartItemService {
     @Autowired
     private ServiceTypeRepository serviceTypeRepository;
 
+
+    @Autowired
+    private CartItemMapper cartItemMapper;
 
 
 
@@ -49,5 +56,27 @@ public class CartItemService {
         cartItemRepository.save(cartItem);
 
 
+    }
+
+    public CartItemQueryDTO getById(Integer id) {
+        return cartItemMapper.toQueryDTO(cartItemRepository.getById(id));
+    }
+
+    public List<CartItemQueryDTO> getAll() {
+        return cartItemRepository.getAll().stream().map(cartItemMapper :: toQueryDTO).toList();
+    }
+
+    public List<CartItemQueryDTO> getAllFromCart(Integer id) {
+        return cartItemRepository.getAllFromCart(id).stream().map(cartItemMapper :: toQueryDTO).toList();
+    }
+
+    public void deleteById(Integer id) {
+        cartItemRepository.deleteById(id);
+    }
+
+    public void deleteFromCart(Integer id) {
+       for(CartItem item : cartItemRepository.getAllFromCart(id)){
+           cartItemRepository.delete(item);
+       }
     }
 }
