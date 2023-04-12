@@ -25,4 +25,14 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "join fetch product.serviceType")
     List<Product> getAllProducts();
 
+
+    @Query(value = "select product.imageName " +
+            "from Product product " +
+            "where product.id = :id")
+    String getImageNameById(@Param("id") Integer id);
+
+    @Query(value = "select product.name " +
+            "from Product product " +
+            "where product.id = :id")
+    String getNameById(@Param("id") Integer id);
 }

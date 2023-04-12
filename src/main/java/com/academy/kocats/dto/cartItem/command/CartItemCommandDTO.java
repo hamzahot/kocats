@@ -7,9 +7,12 @@ import lombok.Data;
 public class CartItemCommandDTO {
 
 
-    private Double amount;
+    private Double price;
+    private Integer quantity;
     private Integer cartId;
     private Integer serviceTypeId;
-    private Integer catId;
+    private Integer catId = null;
+    private String name = null;
+    private String imageName=null;
 
 }

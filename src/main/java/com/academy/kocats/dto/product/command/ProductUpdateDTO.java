@@ -1,15 +1,14 @@
-package com.academy.kocats.dto.action.query;
+package com.academy.kocats.dto.product.command;
 
 
 import lombok.Data;
 
 @Data
-public class ActionQueryDTO {
+public class ProductUpdateDTO {
 
-
-    private Integer id;
     private String name;
     private String description;
     private Double price;
+
 
 }

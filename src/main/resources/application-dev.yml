@@ -18,3 +18,8 @@ spring:
 
 custom-auth:
   key: aabbcc4567
+
+
+fs:
+  base-Url : \Users\hamza\Desktop\Angular Projects\kocats\src\assets\slike_macaka\
+  front-Url : \Users\hamza\Desktop\Angular Projects\kocats\src\assets\images\

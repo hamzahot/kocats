@@ -24,6 +24,7 @@ public class User {
     public User() {
         ShoppingCart shoppingCart = new ShoppingCart();
         this.setShoppingCart(shoppingCart);
+
         shoppingCart.setUser(this);
     }
 
@@ -69,7 +70,7 @@ public class User {
     private ShoppingCart shoppingCart;
 
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -95,5 +96,15 @@ public class User {
 
     public void removePurchases() {
         this.setPurchases(null);
+    }
+
+
+    public void addRole(Role role) {
+        if (role != null && this.getRoles()!=null) {
+            this.getRoles().add(role);
+        }
+        else if(this.getRoles()==null && role != null){
+            this.setRoles(Collections.singleton(role));
+        }
     }
 }

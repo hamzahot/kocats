@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
@@ -61,6 +63,21 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id){
         userService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @GetMapping(value = "exists/by-username/{username}")
+    public ResponseEntity<Map<String, Boolean>> existsByUsername(@PathVariable("username") String username ){
+        boolean doesUserExistByUsername = userService.existsByUsername(username);
+        return new ResponseEntity<>(
+                Collections.singletonMap("userAlreadyExists" , doesUserExistByUsername), HttpStatus.OK
+        );
+    }
+
+    @GetMapping(value = "get-id/{username}")
+    public ResponseEntity<Integer> getIdByUsername(@PathVariable("username") String username){
+        Integer id = userService.getIdByUsername(username);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
 

@@ -13,8 +13,11 @@ public class CatCreateDTO {
 
 
     private String name;
-    private Set<CatRaceDTO> races;
-    private List<PhotoDTO> photos;
+    private Set<CatRaceDTO> breeds;
+    private String gender;
+    private Integer yearBorn;
+   // private List<PhotoDTO> photos;
+
 
 
     /////////////////////OBAVEZNO DA SE ISPRAVI

@@ -27,6 +27,8 @@ public class Race {
 
     private String name;
 
+    private String description;
+
 
     @JsonIgnore
     @ManyToMany(mappedBy = "breeds")

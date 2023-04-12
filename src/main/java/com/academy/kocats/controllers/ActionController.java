@@ -2,6 +2,7 @@ package com.academy.kocats.controllers;
 
 
 import com.academy.kocats.dto.action.command.ActionCreateDTO;
+import com.academy.kocats.dto.action.command.ActionUpdateDTO;
 import com.academy.kocats.dto.action.query.ActionQueryDTO;
 import com.academy.kocats.services.ActionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,17 @@ public class ActionController {
     private ActionService actionService;
 
 
+    @PostMapping
     public ResponseEntity<Void> insert(@RequestBody ActionCreateDTO actionCreateDTO){
         actionService.insert(actionCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+
+    @PutMapping()
+    public ResponseEntity<Void> update(@RequestBody ActionUpdateDTO actionUpdateDTO){
+        actionService.update(actionUpdateDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

@@ -74,6 +74,43 @@ public class ServiceTypeRepositoryTest {
 
     }
 
+    @Test
+    void shouldUpdateProduct(){
+
+//        ServiceType serviceType = new ServiceType();
+//        serviceType.setServiceTypeId(7);
+//        serviceType.setPrice(200.0);
+//
+//        serviceTypeRepository.save(serviceType);
+
+//        Product product = productRepository.getProductById(7);
+//        product.setDescription("suvenir za musterije");
+//        product.setName("Suvenir");
+//        product.setId(7);
+//
+//
+//        ServiceType serviceType = new ServiceType();
+//        serviceType.setServiceTypeId(7);
+//        serviceType.setPrice(209.99);
+//        serviceType.setCategory("product");
+//
+//        product.setServiceType(serviceType);
+//
+//        productRepository.save(product);
+
+
+        Product product = productRepository.getProductById(7);
+        product.setDescription("Suveniri za musterije");
+        product.setName("suvenir");
+
+        product.getServiceType().setPrice(28.99);
+
+        productRepository.save(product);
+
+    }
+
+
+
 
     @Test
     void shouldReturnAllProducts(){

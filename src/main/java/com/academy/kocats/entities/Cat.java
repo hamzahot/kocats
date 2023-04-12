@@ -30,9 +30,15 @@ public class Cat {
 
     private String name;
 
-    //@JsonManagedReference
-    @OneToMany(mappedBy = "cat")
-    private List<PurchaseItem> purchaseItems = new ArrayList<>();
+
+    @Column(name = "is_sterilized")
+    private Boolean isSterilized = false;
+
+    private String gender;
+
+    @Column(name = "year_born")
+    private Integer yearBorn;
+
 
 
 //    @OneToMany(mappedBy = "cat")
@@ -40,7 +46,7 @@ public class Cat {
 
 
    // @JsonManagedReference
-    @OneToMany(mappedBy = "cat", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cat", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CatPhoto> catPhotos = new ArrayList<>();
 
 
@@ -56,14 +62,6 @@ public class Cat {
     private Set<Race> breeds = new HashSet<>();
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "cat_status",
-            joinColumns = @JoinColumn(name = "cat_id"),
-            inverseJoinColumns = @JoinColumn(name = "status_id")
-    )
-    private Set<Status> statuses = new HashSet<>();
 
-    //race status
 
 }

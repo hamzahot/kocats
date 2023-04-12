@@ -17,11 +17,15 @@ public class CatPhoto {
     @Column(name = "photo_id")
     private Integer photoId;
 
-    @Column(name = "file_path")
-    private String filePath;
+    @Column(name = "full_path")
+    private String fullPath;
+
+
+    private String name;
+
 
     //@JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cat_id")
     private Cat cat;
 

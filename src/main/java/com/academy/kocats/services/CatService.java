@@ -2,6 +2,8 @@ package com.academy.kocats.services;
 
 
 import com.academy.kocats.dto.cat.command.CatCreateDTO;
+import com.academy.kocats.dto.cat.command.CatUpdateDTO;
+import com.academy.kocats.dto.cat.query.CatGetDTO;
 import com.academy.kocats.entities.Cat;
 import com.academy.kocats.entities.CatPhoto;
 import com.academy.kocats.entities.Race;
@@ -13,6 +15,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,27 +29,12 @@ public class CatService {
     private CatMapper catMapper;
 
     @Autowired
-    private RaceMapper raceMapper;
-
-    @Autowired
     private CatRepository catRepository;
 
-    @Autowired
-    private PhotoMapper photoMapper;
 
     public void insert(CatCreateDTO catCreateDTO) {
 
         Cat cat = catMapper.toEntity(catCreateDTO);
-
-        for(CatPhoto catPhoto : cat.getCatPhotos()){
-            catPhoto.setCat(cat);
-        }
-
-        Set<Race> set = catCreateDTO.getRaces().stream().map(raceMapper::toEntity).collect(Collectors.toSet());
-        if ( set != null ) {
-            cat.setBreeds( new HashSet<Race>( set ) );
-        }
-
         catRepository.save(cat);
 
     }
@@ -55,28 +43,67 @@ public class CatService {
         catRepository.deleteById(id);
     }
 
-    public void update(Integer id, CatCreateDTO catCreateDTO) {
-
-        Cat cat = catRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found!"));
-
-        List<CatPhoto> list = catCreateDTO.getPhotos().stream().map(photoMapper::toEntity).toList();
-        for(CatPhoto catPhoto : list){
-            catPhoto.setCat(cat);
+    public List<CatGetDTO> getAll() {
+        List<Cat> cats = catRepository.getAllCatsWithBreeds();
+        List<CatGetDTO> result = new ArrayList<>();
+        for(Cat cat : cats){
+            CatGetDTO catGetDTO = catMapper.toGetDTO(cat);
+            List<String> list = new ArrayList<>();
+            for(CatPhoto catPhoto : cat.getCatPhotos()){
+                list.add(catPhoto.getName());
+            }
+            catGetDTO.setPhotos(list);
+            result.add(catGetDTO);
         }
-        if(list != null){
-            List<CatPhoto> lista = cat.getCatPhotos();
-            lista.addAll(list);
-            cat.setCatPhotos(lista);
-        }
-
-        Set<Race> set = catCreateDTO.getRaces().stream().map(raceMapper::toEntity).collect(Collectors.toSet());
-        if ( set != null ) {
-            cat.setBreeds( new HashSet<Race>( set ) );
-        }
-
-        cat.setName( catCreateDTO.getName() );
-
-        catRepository.save(cat);
-
+//        return catRepository.getAllCatsWithBreeds().stream().map(catMapper :: toGetDTO).toList();
+        return result;
     }
+
+    public CatGetDTO getById(Integer id) {
+        Cat cat = catRepository.findByIdWithBreeds(id);
+        CatGetDTO catGetDTO = catMapper.toGetDTO(cat);
+        List<String> list = new ArrayList<>();
+        for(CatPhoto catPhoto : cat.getCatPhotos()){
+            list.add(catPhoto.getName());
+        }
+        catGetDTO.setPhotos(list);
+        return catGetDTO;
+//         return catMapper.toGetDTO(catRepository.findByIdWithBreeds(id));
+    }
+
+    public void update(CatUpdateDTO catUpdateDTO) {
+        catRepository.save(catMapper.updateDTOtoEntity(catUpdateDTO));
+    }
+
+    public void sterilize(Integer id) {
+        Cat cat = catRepository.findByIdWithBreeds(id);
+        if(cat.getIsSterilized() == false){
+            cat.setIsSterilized(true);
+        }
+    }
+
+//    public void update(Integer id, CatCreateDTO catCreateDTO) {
+//
+//        Cat cat = catRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found!"));
+//
+//        List<CatPhoto> list = catCreateDTO.getPhotos().stream().map(photoMapper::toEntity).toList();
+//        for(CatPhoto catPhoto : list){
+//            catPhoto.setCat(cat);
+//        }
+//        if(list != null){
+//            List<CatPhoto> lista = cat.getCatPhotos();
+//            lista.addAll(list);
+//            cat.setCatPhotos(lista);
+//        }
+//
+//        Set<Race> set = catCreateDTO.getRaces().stream().map(raceMapper::toEntity).collect(Collectors.toSet());
+//        if ( set != null ) {
+//            cat.setBreeds( new HashSet<Race>( set ) );
+//        }
+//
+//        cat.setName( catCreateDTO.getName() );
+//
+//        catRepository.save(cat);
+//
+//    }
 }

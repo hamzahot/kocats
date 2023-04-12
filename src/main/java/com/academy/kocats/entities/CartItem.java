@@ -22,12 +22,20 @@ public class CartItem {
     @Column(name = "cart_item_id")
     private Integer cartItemId;
 
-    private Double amount;
+    private Integer quantity = 1;
+
+    private Double price;
 
     //@JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private ShoppingCart shoppingCart;
+
+
+    @Column(name = "image_name")
+    private String imageName;
+
+    private String name;
 
     //@JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)

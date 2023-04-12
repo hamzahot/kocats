@@ -50,9 +50,16 @@ public class CartItemController {
 
 
 
-    @DeleteMapping(value = "{id}")
-    public ResponseEntity<Void> deleteItemById(@PathVariable("id") Integer id){
-        cartItemService.deleteById(id);
+    @DeleteMapping(value = "{id}/{productId}")
+    public ResponseEntity<Void> deleteItemById(@PathVariable("id") Integer id, @PathVariable("productId") Integer productId){
+        cartItemService.deleteProductFromCart(id, productId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(value = "{id}/{actionId}/{catId}")
+    public ResponseEntity<Void> deleteActionFromCart(@PathVariable("id") Integer id, @PathVariable("actionId") Integer actionId,
+                                                     @PathVariable("catId") Integer catId){
+        cartItemService.deleteActionFromCart(id, actionId, catId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -62,6 +69,40 @@ public class CartItemController {
         cartItemService.deleteFromCart(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+    @PutMapping(value = "add-quantity/{id}/{productId}")
+    public ResponseEntity<Void> increaseQuantity(@PathVariable("id") Integer id, @PathVariable("productId") Integer productId){
+        cartItemService.increaseQuantity(id, productId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "reduce-quantity/{id}/{productId}")
+    public ResponseEntity<Void> decreaseQuantity(@PathVariable("id") Integer id, @PathVariable("productId") Integer productId ){
+        cartItemService.reduceQuantity(id, productId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "exists/{id}/{productId}")
+    public ResponseEntity<Boolean> productExistsInCart(@PathVariable("id") Integer id , @PathVariable("productId") Integer productId){
+        Boolean b = cartItemService.existsInCart(id, productId);
+        return new ResponseEntity<>(b, HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "get-total/{id}")
+    public ResponseEntity<Double> getTotal(@PathVariable("id") Integer id){
+        Double sum = cartItemService.getTotal(id);
+        return new ResponseEntity<>(sum, HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "number-of-items/{id}")
+    public ResponseEntity<Integer> getNumberOfItemsInCart(@PathVariable("id") Integer id){
+        Integer number = cartItemService.getNumber(id);
+        return new ResponseEntity<>(number, HttpStatus.OK);
+    }
+
 
 
 

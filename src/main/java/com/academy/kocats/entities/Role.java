@@ -33,4 +33,12 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
+
+
+    public void addUser(User user){
+        if(user != null){
+            this.getUsers().add(user);
+        }
+    }
+
 }

@@ -50,7 +50,7 @@ public class PurchaseService {
             ServiceType serviceType = serviceTypeRepository.getServiceTypeById(item.getServiceTypeDTO().getServiceTypeId());
 
             PurchaseItem purchaseItem = new PurchaseItem();
-            purchaseItem.setAmount(item.getAmount());
+            //purchaseItem.setAmount(item.getAmount());
             purchaseItem.setPurchase(purchase);
             purchaseItem.setCat(cat);
             purchaseItem.setServiceType(serviceType);

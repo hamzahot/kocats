@@ -6,7 +6,8 @@ import lombok.Data;
 public class CatRaceDTO {
 
 
-    private Integer id;
+    private Integer raceId;
     private String name;
+    private String description;
 
 }

@@ -2,6 +2,7 @@ package com.academy.kocats.services;
 
 
 import com.academy.kocats.dto.action.command.ActionCreateDTO;
+import com.academy.kocats.dto.action.command.ActionUpdateDTO;
 import com.academy.kocats.dto.action.query.ActionQueryDTO;
 import com.academy.kocats.entities.Action;
 import com.academy.kocats.entities.ServiceType;
@@ -45,5 +46,17 @@ public class ActionService {
 
     public void deleteById(Integer id) {
         actionRepository.deleteById(id);
+    }
+
+    public void update(ActionUpdateDTO actionUpdateDTO) {
+        Action action = actionMapper.updateDTOtoEntity(actionUpdateDTO);
+        ServiceType serviceType = new ServiceType();
+        serviceType.setServiceTypeId(actionUpdateDTO.getId());
+        serviceType.setPrice(actionUpdateDTO.getPrice());
+        serviceType.setCategory("action");
+
+        action.setServiceType(serviceType);
+
+        actionRepository.save(action);
     }
 }

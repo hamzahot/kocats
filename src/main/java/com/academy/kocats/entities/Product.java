@@ -18,11 +18,13 @@ public class Product {
 
     private String description;
 
+    @Column(name = "image_name")
+    private String imageName;
 
 
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "id")
     private ServiceType serviceType;

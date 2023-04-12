@@ -9,9 +9,12 @@ import lombok.Data;
 public class CartItemQueryDTO {
 
     private Integer id;
-    private Double amount;
+    private Double price;
+    private Integer quantity;
     private Integer cartId;
-    private CatGetDTO catDTO;
+    private CatGetDTO catDTO=null;
     private ServiceTypeDTO serviceTypeDTO;
+    private String name;
+    private String imageName;
 
 }
